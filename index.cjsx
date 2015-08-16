@@ -61,7 +61,7 @@ module.exports =
     priority: 110
     displayName: <span><FontAwesome name='bar-chart' key={0} /> {__ 'PluginName'}</span>
     author: 'Alvin Yu'
-    link: 'https://github.com/alvin-777'
+    link: 'https://github.com/alvin-777/poi-plugin-poi-stats'
     version: '0.2.0'
     description: __ 'PluginDesc'
     handleClick: ->
