@@ -1,10 +1,4 @@
 {
-  "Volume off": "关闭声音",
-  "Volume on": "开启声音",
-  "Auto adjust": "自动调整",
-  "Change resolution": "分辨率设置",
-  "Developer Tools": "开发者工具",
-  "Links": "链接",
-  "PluginName": "掉落统计",
-  "PluginDesc": "在新窗口中查询与浏览Poi收集的海域掉落统计"
+    "PluginName": "掉落统计",
+    "PluginDesc": "在新窗口中查询与浏览Poi收集的海域掉落统计"
 }
