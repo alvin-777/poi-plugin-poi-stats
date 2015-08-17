@@ -7,6 +7,11 @@ Put the folder in _root_of_poi_/resources/app/plugins
 
 ### Change Log
 
+#### v1.1.0
+* New button features
+  * Right-click on Zoom button will reset the window size and position.
+  * New Hide button.
+
 #### v1.0.1
 * Removed a label (which didn't work, and wouldn't look good if it worked...). Use plain text instead.
 
