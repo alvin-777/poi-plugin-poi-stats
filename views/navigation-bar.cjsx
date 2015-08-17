@@ -4,6 +4,7 @@ remote = require 'remote'
 webview = $('inner-page webview')
 innerpage = $('inner-page')
 
+# Not used yet, but may need in the future.
 # i18n = remote.require './node_modules/i18n'
 # path = require 'path-extra'
 # {__} = i18n
@@ -72,14 +73,12 @@ NavigationBar = React.createClass
     webview.copy()
   render: ->
     <Grid>
-      <Col xs={9}>
+      <Col>
         <ButtonGroup>
           <Button bsSize='small' bsStyle='info' disabled={!webview.canGoBack()} onClick={@goBack} title='Back'><FontAwesome name='arrow-left' /></Button>
           <Button bsSize='small' bsStyle='info' disabled={!webview.canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
         </ButtonGroup>
-        <span>　</span>
-        <span className="label label-primary">{@getIcon()}</span>
-        <span>　</span>
+        <span>　{@getIcon()}　</span>
         <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
         <span>　</span>
         <ButtonGroup>
