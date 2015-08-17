@@ -66,6 +66,12 @@ NavigationBar = React.createClass
     # MacOSX can handle maximize & unmaximize automatically.
     # May need to call unmaximize() on some OS??
     remote.getCurrentWindow().maximize()
+  resetWindow: ->
+    remote.getCurrentWindow().setBounds
+      x: (config.get 'poi.window.x', 0) + 800
+      y: config.get 'poi.window.y', 0
+      width: 800
+      height: 750
   toggleFullscreen: ->
     currWin = remote.getCurrentWindow()
     currWin.setFullScreen(!currWin.isFullScreen())
@@ -82,7 +88,7 @@ NavigationBar = React.createClass
         <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
         <span>　</span>
         <ButtonGroup>
-          <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} title='Zoom'><FontAwesome name='arrows' /></Button>
+          <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} onContextMenu={@resetWindow} title='Zoom/Reset Window'><FontAwesome name='arrows' /></Button>
           <Button bsSize='small' bsStyle='primary' onClick={@toggleFullscreen} title='Toggle Fullscreen'><FontAwesome name='arrows-alt' /></Button>
         </ButtonGroup>
         <span>　</span>
