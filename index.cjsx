@@ -46,6 +46,7 @@ initialPoiStatsWindow = ->
         height: size[1]
         realClose: true
     window.poiStatsWindow = newWindow
+    newWindow.setMinimumSize 600, 425
     newWindow.on 'move', savePoiStatsWindowPosition
     newWindow.on 'resize', savePoiStatsWindowSize
     newWindow.on 'closed', onPoiStatsWindowClosed
@@ -62,7 +63,7 @@ module.exports =
     displayName: <span><FontAwesome name='bar-chart' key={0} /> {__ 'PluginName'}</span>
     author: 'Alvin Yu'
     link: 'https://github.com/alvin-777/poi-plugin-poi-stats'
-    version: '0.2.0'
+    version: '1.1.0'
     description: __ 'PluginDesc'
     handleClick: ->
         if window.poiStatsWindow != null
