@@ -75,24 +75,31 @@ NavigationBar = React.createClass
   toggleFullscreen: ->
     currWin = remote.getCurrentWindow()
     currWin.setFullScreen(!currWin.isFullScreen())
+  hideWindow: ->
+    remote.getCurrentWindow().hide()
   copyToClipboard: ->
     webview.copy()
   render: ->
-    <Grid>
-      <Col>
-        <ButtonGroup>
-          <Button bsSize='small' bsStyle='info' disabled={!webview.canGoBack()} onClick={@goBack} title='Back'><FontAwesome name='arrow-left' /></Button>
-          <Button bsSize='small' bsStyle='info' disabled={!webview.canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
-        </ButtonGroup>
-        <span>　{@getIcon()}　</span>
-        <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
-        <span>　</span>
-        <ButtonGroup>
-          <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} onContextMenu={@resetWindow} title='Zoom/Reset Window'><FontAwesome name='arrows' /></Button>
-          <Button bsSize='small' bsStyle='primary' onClick={@toggleFullscreen} title='Toggle Fullscreen'><FontAwesome name='arrows-alt' /></Button>
-        </ButtonGroup>
-        <span>　</span>
-        <Button bsSize='small' bsStyle='default' onClick={@copyToClipboard} title='Copy To Clipboard'><FontAwesome name='clipboard' /></Button>
-      </Col>
+    <Grid fluid=true>
+      <Row>
+        <Col lg={11} md={11} xs={11}>
+          <ButtonGroup>
+            <Button bsSize='small' bsStyle='info' disabled={!webview.canGoBack()} onClick={@goBack} title='Back'><FontAwesome name='arrow-left' /></Button>
+            <Button bsSize='small' bsStyle='info' disabled={!webview.canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
+          </ButtonGroup>
+          <span>　{@getIcon()}　</span>
+          <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
+          <span>　</span>
+          <ButtonGroup>
+            <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} onContextMenu={@resetWindow} title='Zoom/Reset Window'><FontAwesome name='arrows' /></Button>
+            <Button bsSize='small' bsStyle='primary' onClick={@toggleFullscreen} title='Toggle Fullscreen'><FontAwesome name='arrows-alt' /></Button>
+          </ButtonGroup>
+          <span>　</span>
+          <Button bsSize='small' onClick={@copyToClipboard} title='Copy To Clipboard'><FontAwesome name='clipboard' /></Button>
+        </Col>
+        <Col lg={1} md={1} xs={1}>
+          <Button bsSize='small' onClick={@hideWindow} title='Hide Window'><FontAwesome name='times' /></Button>
+        </Col>
+      </Row>
     </Grid>
 module.exports = NavigationBar
