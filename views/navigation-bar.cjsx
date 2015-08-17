@@ -78,7 +78,7 @@ NavigationBar = React.createClass
           <Button bsSize='small' bsStyle='info' disabled={!webview.canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
         </ButtonGroup>
         <span>　</span>
-        <span class="label label-primary">{@getIcon()}</span>
+        <span className="label label-primary">{@getIcon()}</span>
         <span>　</span>
         <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
         <span>　</span>
