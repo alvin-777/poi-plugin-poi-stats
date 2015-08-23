@@ -19,8 +19,20 @@ innerpage = $('inner-page')
 # })
 # i18n.setLocale(window.language)
 
+psLog = (msg) ->
+  now = new Date()
+  console.log "#{now.getTime()}: #{msg}"
+psAddEventLogger = (ev) ->
+  webview.addEventListener ev, psLog.bind(@, ev)
+
+if remote.getCurrentWindow().isDevToolsOpened()
+  psAddEventLogger 'did-start-loading'
+  psAddEventLogger 'did-stop-loading'
+  # psAddEventLogger 'did-finish-load'
+  psAddEventLogger 'did-fail-load'
 
 NavigationBar = React.createClass
+  canSetState: true
   getInitialState: ->
     navigateStatus: 'Loading'
   getIcon: ->
@@ -34,15 +46,18 @@ NavigationBar = React.createClass
   onResize: (e) ->
     $('inner-page')?.style?.height = "#{window.innerHeight - 50}px"
     $('inner-page webview')?.style?.height = $('inner-page webview /deep/ object[is=browserplugin]')?.style?.height = "#{window.innerHeight - 50}px"
-  onStartedLoading: (e) ->
-    @setState
-      navigateStatus: 'Loading'
+  onStartedLoading: ->
+    if @canSetState and @state.navigateStatus isnt 'Loading'
+      @setState
+        navigateStatus: 'Loading'
   onStoppedLoading: ->
-    @setState
-      navigateStatus: 'OK'
+    if @canSetState and @state.navigateStatus isnt 'OK'
+      @setState
+        navigateStatus: 'OK'
   onFailedToLoad: ->
-    @setState
-      navigateStatus: 'Failed'
+    if @canSetState and @state.navigateStatus isnt 'Failed'
+      @setState
+        navigateStatus: 'Failed'
   componentDidMount: ->
     window.addEventListener 'resize', @onResize
     webview.addEventListener 'did-start-loading', @onStartedLoading
@@ -53,6 +68,10 @@ NavigationBar = React.createClass
     webview.removeEventListener 'did-start-loading', @onStartedLoading
     webview.removeEventListener 'did-stop-loading', @onStoppedLoading
     webview.removeEventListener 'did-fail-load', @onFailedToLoad
+  componentWillUpdate: ->
+    @canSetState = false
+  componentDidUpdate: ->
+    @canSetState = true
 
   goBack: ->
     if webview.canGoBack()
