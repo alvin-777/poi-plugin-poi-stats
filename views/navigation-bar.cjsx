@@ -19,6 +19,17 @@ innerpage = $('inner-page')
 # })
 # i18n.setLocale(window.language)
 
+psLog = (msg) ->
+  now = new Date()
+  console.log "#{now.getTime()}: #{msg}"
+psAddEventLogger = (ev) ->
+  webview.addEventListener ev, psLog.bind(@, ev)
+
+if remote.getCurrentWindow().isDevToolsOpened()
+  psAddEventLogger 'did-start-loading'
+  psAddEventLogger 'did-stop-loading'
+  # psAddEventLogger 'did-finish-load'
+  psAddEventLogger 'did-fail-load'
 
 NavigationBar = React.createClass
   getInitialState: ->
