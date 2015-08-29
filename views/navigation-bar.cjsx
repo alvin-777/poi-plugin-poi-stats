@@ -25,7 +25,7 @@ psLog = (msg) ->
 psAddEventLogger = (ev) ->
   webview.addEventListener ev, psLog.bind(@, ev)
 
-if remote.getCurrentWindow().isDevToolsOpened()
+# if remote.getCurrentWindow().isDevToolsOpened()
   # psAddEventLogger 'did-start-loading'
   # psAddEventLogger 'did-stop-loading'
   # psAddEventLogger 'did-finish-load'
