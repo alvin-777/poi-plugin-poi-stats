@@ -7,6 +7,9 @@ Put the folder in _root_of_poi_/resources/app/plugins
 
 ### Change Log
 
+#### v1.1.2
+* Minor bug fix
+
 #### v1.1.1
 * Minor bug fix
 

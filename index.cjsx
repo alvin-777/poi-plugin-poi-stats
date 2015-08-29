@@ -63,7 +63,7 @@ module.exports =
     displayName: <span><FontAwesome name='bar-chart' key={0} /> {__ 'PluginName'}</span>
     author: 'Alvin Yu'
     link: 'https://github.com/alvin-777/poi-plugin-poi-stats'
-    version: '1.1.1'
+    version: '1.1.2'
     description: __ 'PluginDesc'
     handleClick: ->
         if window.poiStatsWindow != null
