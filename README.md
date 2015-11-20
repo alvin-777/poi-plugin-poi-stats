@@ -7,6 +7,11 @@ Put the folder in _root_of_poi_/resources/app/plugins
 
 ### Change Log
 
+#### v1.2.0
+* Fixed i18n
+* Rewrote how it saves the window position & size
+* Added package.json
+
 #### v1.1.2
 * Minor bug fix
 
