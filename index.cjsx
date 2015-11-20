@@ -19,37 +19,30 @@ i18n.setLocale(window.language)
 
 window.poiStatsWindow = null
 
-savePoiStatsWindowPosition = ->
-    if window.poiStatsWindow != null
-        config.set 'plugin.PoiStatistics.pos', window.poiStatsWindow.getPosition()
-        if process.env.DEBUG?
-            window.log 'New position: ' + window.poiStatsWindow.getPosition()
-
-savePoiStatsWindowSize = ->
-    if window.poiStatsWindow != null
-        config.set 'plugin.PoiStatistics.size', window.poiStatsWindow.getSize()
-        if process.env.DEBUG?
-            window.log 'New size: ' + window.poiStatsWindow.getSize()
-
-onPoiStatsWindowClosed = ->
-    window.poiStatsWindow = null
-    if process.env.DEBUG?
-        window.log 'Poi Stats closed.'
+handleWindowMoveResize = ->
+  b1 = window.poiStatsWindow.getBounds()
+  # console.log "Moved to: #{JSON.stringify(b1)}"
+  setTimeout(( ->
+    b2 = window.poiStatsWindow.getBounds()
+    if JSON.stringify(b2) == JSON.stringify(b1)
+      config.set 'plugin.PoiStatistics.bounds', b2
+      # console.log "   Saved:  #{JSON.stringify(b2)}"
+  ), 5000)
 
 initialPoiStatsWindow = ->
-    pos = config.get 'plugin.PoiStatistics.pos', [0, 0]
-    size = config.get 'plugin.PoiStatistics.size', [800, 750]
+    defaultBounds = {x: 0, y: 0, width: 800, height: 750}
+    b = config.get 'plugin.PoiStatistics.bounds', defaultBounds
     newWindow = windowManager.createWindow
-        x: pos[0]
-        y: pos[1]
-        width: size[0]
-        height: size[1]
+        x: b.x
+        y: b.y
+        width: b.width
+        height: b.height
         realClose: true
     window.poiStatsWindow = newWindow
     newWindow.setMinimumSize 600, 425
-    newWindow.on 'move', savePoiStatsWindowPosition
-    newWindow.on 'resize', savePoiStatsWindowSize
-    newWindow.on 'closed', onPoiStatsWindowClosed
+    newWindow.on 'move', handleWindowMoveResize
+    newWindow.on 'resize', handleWindowMoveResize
+    newWindow.on 'closed', -> window.poiStatsWindow = null
     newWindow.loadUrl "file://#{__dirname}/index.html"
     newWindow.show()
     if process.env.DEBUG?
