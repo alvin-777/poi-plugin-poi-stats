@@ -1,0 +1,19 @@
+{
+  "name": "PoiStatistics",
+  "version": "1.1.2",
+  "description": "Show drop statistics gathered by Poi in a new window.",
+  "main": "index.cjsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvin-777/poi-plugin-poi-stats.git"
+  },
+  "author": "Alvin Yu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvin-777/poi-plugin-poi-stats/issues"
+  },
+  "homepage": "https://github.com/alvin-777/poi-plugin-poi-stats#readme"
+}
