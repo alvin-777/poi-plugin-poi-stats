@@ -43,9 +43,11 @@ NavigationBar = React.createClass
         <FontAwesome name='check' />
       when 'Loading'
         <FontAwesome name='spinner' spin />
-  onResize: (e) ->
-    $('inner-page')?.style?.height = "#{window.innerHeight - 50}px"
-    $('inner-page webview')?.style?.height = $('inner-page webview /deep/ object[is=browserplugin]')?.style?.height = "#{window.innerHeight - 50}px"
+  onResize: ->
+    h = "#{window.innerHeight - 50}px"
+    $('inner-page')?.style?.height = h
+    $('inner-page webview')?.style?.height = h
+    $('inner-page webview')?.shadowRoot?.querySelector('object[is=browserplugin]')?.style?.height = h
   onStartedLoading: ->
     if @canSetState and @state.navigateStatus isnt 'Loading'
       @setState

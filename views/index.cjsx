@@ -3,8 +3,10 @@
 NavigationBar = require './navigation-bar'
 WebArea = React.createClass
   render: ->
-    $('inner-page')?.style?.height = "#{window.innerHeight - 50}px"
-    $('inner-page webview')?.style?.height = $('inner-page webview /deep/ object[is=browserplugin]')?.style?.height = "#{window.innerHeight - 50}px"
+    h = "#{window.innerHeight - 50}px"
+    $('inner-page')?.style?.height = h
+    $('inner-page webview')?.style?.height = h
+    $('inner-page webview')?.shadowRoot?.querySelector('object[is=browserplugin]')?.style?.height = h
     <form id="nav-area">
       <div className="form-group" id='navigator-bar'> {# Damn "navigator bar" is wrong English!}
         <h5>   </h5>
