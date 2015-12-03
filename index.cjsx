@@ -43,7 +43,7 @@ initialPoiStatsWindow = ->
   newWindow.on 'move', handleWindowMoveResize
   newWindow.on 'resize', handleWindowMoveResize
   newWindow.on 'closed', -> window.poiStatsWindow = null
-  newWindow.loadUrl "file://#{__dirname}/index.html"
+  newWindow.loadURL "file://#{__dirname}/index.html"
   newWindow.show()
   if process.env.DEBUG?
     window.log 'Poi Stats started.'
