@@ -1,9 +1,9 @@
 {React, ReactBootstrap, FontAwesome} = window
-remote = require 'remote'
+{remote} = require 'electron'
 windowManager = remote.require './lib/window'
 
-i18n = remote.require './node_modules/i18n'
-path = require 'path-extra'
+i18n = remote.require 'i18n'
+path = remote.require 'path-extra'
 {__} = i18n
 
 i18n.configure({
@@ -43,12 +43,12 @@ initialPoiStatsWindow = ->
   newWindow.on 'move', handleWindowMoveResize
   newWindow.on 'resize', handleWindowMoveResize
   newWindow.on 'closed', -> window.poiStatsWindow = null
-  newWindow.loadURL "file://#{__dirname}/index.html"
-  newWindow.show()
   if process.env.DEBUG?
     window.log 'Poi Stats started.'
     newWindow.openDevTools
       detach: true
+  newWindow.loadURL "file://#{__dirname}/index.html"
+  newWindow.show()
 
 module.exports =
   name: 'PoiStatistics'

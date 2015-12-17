@@ -1,4 +1,4 @@
-{$, $$, _, React, ReactBootstrap, FontAwesome, ROOT} = window
+{$, $$, _, React, ReactDOM, ReactBootstrap, FontAwesome, ROOT} = window
 {Panel, Button, Input, Col, Grid, Row, Table} = ReactBootstrap
 NavigationBar = require './navigation-bar'
 WebArea = React.createClass
@@ -8,9 +8,9 @@ WebArea = React.createClass
     $('inner-page webview')?.style?.height = h
     $('inner-page webview')?.shadowRoot?.querySelector('object[is=browserplugin]')?.style?.height = h
     <form id="nav-area">
-      <div className="form-group" id='navigator-bar'> {# Damn "navigator bar" is wrong English!}
+      <div className="form-group" id='navigation-bar'>
         <h5>   </h5>
         <NavigationBar />
       </div>
     </form>
-React.render <WebArea />, $('web-area')
+ReactDOM.render <WebArea />, $('web-area')

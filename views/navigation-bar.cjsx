@@ -75,11 +75,21 @@ NavigationBar = React.createClass
   componentDidUpdate: ->
     @canSetState = true
 
+  canGoBack: ->
+    try
+      webview.canGoBack()
+    catch error
+      false
   goBack: ->
-    if webview.canGoBack()
+    if @canGoBack()
       webview.goBack()
+  canGoForward: ->
+    try
+      webview.canGoForward()
+    catch error
+      false
   goForward: ->
-    if webview.canGoForward()
+    if @canGoForward()
       webview.goForward()
   refreshPage: ->
     webview.reload()
@@ -105,8 +115,8 @@ NavigationBar = React.createClass
       <Row>
         <Col lg={11} md={11} xs={11}>
           <ButtonGroup>
-            <Button bsSize='small' bsStyle='info' disabled={!webview.canGoBack()} onClick={@goBack} title='Back'><FontAwesome name='arrow-left' /></Button>
-            <Button bsSize='small' bsStyle='info' disabled={!webview.canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
+            <Button bsSize='small' bsStyle='info' disabled={!@canGoBack()} onClick={@goBack} title='Back'><FontAwesome name='arrow-left' /></Button>
+            <Button bsSize='small' bsStyle='info' disabled={!@canGoForward()} onClick={@goForward} title='Forward'><FontAwesome name='arrow-right' /></Button>
           </ButtonGroup>
           <span>　{@getIcon()}　</span>
           <Button bsSize='small' bsStyle='warning' onClick={@refreshPage} title='Refresh'><FontAwesome name='refresh' /></Button>
