@@ -1,23 +1,7 @@
 {$, $$, _, React, ReactBootstrap, FontAwesome, ROOT} = window
-{Grid, Col, Button, ButtonGroup, Input, Modal, Alert, OverlayTrigger, DropdownButton, MenuItem, Popover, Row, Tooltip} = ReactBootstrap
+{Grid, Col, Row, Button, ButtonGroup} = ReactBootstrap
 remote = require 'remote'
 webview = $('inner-page webview')
-innerpage = $('inner-page')
-
-# Not used yet, but may need in the future.
-# i18n = remote.require './node_modules/i18n'
-# path = require 'path-extra'
-# {__} = i18n
-#
-# i18n.configure({
-#     locales:['en-US', 'ja-JP', 'zh-CN'],
-#     defaultLocale: 'zh-CN',
-#     directory: path.join(__dirname, '..', "i18n"),
-#     updateFiles: false,
-#     indent: "\t",
-#     extension: '.json'
-# })
-# i18n.setLocale(window.language)
 
 psLog = (msg) ->
   now = new Date()
