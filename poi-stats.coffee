@@ -14,19 +14,23 @@ window.config = remote.require './lib/config'
 window.language = config.get 'poi.language', 'zh-CN'
 
 # Custom theme
-window.theme = config.get 'poi.theme', '__default__'
-if theme == '__default__'
-  $('#bootstrap-css')?.setAttribute 'href', "#{ROOT}/components/bootstrap/dist/css/bootstrap.css"
-else
-  $('#bootstrap-css')?.setAttribute 'href', "#{ROOT}/assets/themes/#{theme}/css/#{theme}.css"
-window.addEventListener 'theme.change', (e) ->
-  window.theme = e.detail.theme
-  if theme == '__default__'
-    $('#bootstrap-css')?.setAttribute 'href', "#{ROOT}/components/bootstrap/dist/css/bootstrap.css"
+window.setCSS = (selectror, path) ->
+  $(selectror)?.setAttribute 'href', path
+window.setTheme = (t) ->
+  if t is '__default__'
+    setCSS '#bootstrap-css', "#{ROOT}/components/bootstrap/dist/css/bootstrap.css"
   else
-    $('#bootstrap-css')?.setAttribute 'href', "#{ROOT}/assets/themes/#{theme}/css/#{theme}.css"
+    setCSS '#bootstrap-css', "#{ROOT}/assets/themes/#{t}/css/#{t}.css"
 
-$('#font-awesome')?.setAttribute 'href', "#{ROOT}/components/font-awesome/css/font-awesome.min.css"
+window.theme = config.get 'poi.theme', '__default__'
+setTheme window.theme
+
+window.handleThemeChange = (e) ->
+  window.theme = e.detail.theme
+  setTheme(window.theme)
+window.addEventListener 'theme.change', window.handleThemeChange
+
+setCSS '#font-awesome', "#{ROOT}/components/font-awesome/css/font-awesome.min.css"
 
 require 'coffee-react/register'
 require './views'
