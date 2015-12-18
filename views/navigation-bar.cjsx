@@ -27,11 +27,6 @@ NavigationBar = React.createClass
         <FontAwesome name='check' />
       when 'Loading'
         <FontAwesome name='spinner' spin />
-  onResize: ->
-    h = "#{window.innerHeight - 50}px"
-    $('inner-page')?.style?.height = h
-    $('inner-page webview')?.style?.height = h
-    $('inner-page webview')?.shadowRoot?.querySelector('object[is=browserplugin]')?.style?.height = h
   onStartedLoading: ->
     if @canSetState and @state.navigateStatus isnt 'Loading'
       @setState
@@ -45,12 +40,10 @@ NavigationBar = React.createClass
       @setState
         navigateStatus: 'Failed'
   componentDidMount: ->
-    window.addEventListener 'resize', @onResize
     webview.addEventListener 'did-start-loading', @onStartedLoading
     webview.addEventListener 'did-stop-loading', @onStoppedLoading
     webview.addEventListener 'did-fail-load', @onFailedToLoad
   componentWillUmount: ->
-    window.removeEventListener 'resize', @onResize
     webview.removeEventListener 'did-start-loading', @onStartedLoading
     webview.removeEventListener 'did-stop-loading', @onStoppedLoading
     webview.removeEventListener 'did-fail-load', @onFailedToLoad
@@ -58,7 +51,6 @@ NavigationBar = React.createClass
     @canSetState = false
   componentDidUpdate: ->
     @canSetState = true
-
   canGoBack: ->
     try
       webview.canGoBack()
