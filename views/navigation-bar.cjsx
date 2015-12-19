@@ -1,6 +1,5 @@
 {$, $$, _, React, ReactBootstrap, FontAwesome, ROOT} = window
 {Grid, Col, Row, Button, ButtonGroup} = ReactBootstrap
-remote = require 'remote'
 webview = $('inner-page webview')
 
 psLog = (msg) ->
@@ -84,8 +83,8 @@ NavigationBar = React.createClass
     currWin.setFullScreen(!currWin.isFullScreen())
   hideWindow: ->
     remote.getCurrentWindow().hide()
-  copyToClipboard: ->
-    webview.copy()
+  openExternal: ->
+    require('electron').shell.openExternal webview.getURL()
   render: ->
     <Grid fluid=true>
       <Row>
@@ -101,6 +100,8 @@ NavigationBar = React.createClass
             <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} onContextMenu={@resetWindow} title='Zoom/Reset Window'><FontAwesome name='arrows' /></Button>
             <Button bsSize='small' bsStyle='primary' onClick={@toggleFullscreen} title='Toggle Fullscreen'><FontAwesome name='arrows-alt' /></Button>
           </ButtonGroup>
+          <span>　</span>
+          <Button bsSize='small' onClick={@openExternal} title='Open in Browser'><FontAwesome name='external-link' /></Button>
         </Col>
         <Col lg={1} md={1} xs={1}>
           <Button bsSize='small' onClick={@hideWindow} title='Hide Window'><FontAwesome name='times' /></Button>
