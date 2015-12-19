@@ -3,11 +3,11 @@ windowManager = remote.require './lib/window'
 path = remote.require 'path-extra'
 
 i18n = new (require 'i18n-2')
-  locales:['en-US', 'ja-JP', 'zh-CN'],
-  defaultLocale: 'zh-CN',
-  directory: path.join(__dirname, "i18n"),
-  updateFiles: false,
-  indent: "\t",
+  locales:['en-US', 'ja-JP', 'zh-CN']
+  defaultLocale: 'zh-CN'
+  directory: path.join(__dirname, "i18n")
+  updateFiles: false
+  indent: "\t"
   extension: '.json'
 i18n.setLocale(window.language)
 
@@ -47,13 +47,14 @@ initialPoiStatsWindow = ->
   newWindow.loadURL "file://#{__dirname}/index.html"
   newWindow.show()
 
+p = require path.join(__dirname, "package.json")
 module.exports =
-  name: 'PoiStatistics'
+  name: p.name
   priority: 110
   displayName: <span><FontAwesome name='bar-chart' key={0} /> {i18n.__ 'Poi Statistics'}</span>
-  author: 'Alvin Yu'
-  link: 'https://github.com/alvin-777/poi-plugin-poi-stats'
-  version: '1.2.0'
+  author: p.author.name
+  link: p.author.url
+  version: p.version
   description: i18n.__ 'PluginDesc'
   handleClick: ->
     if window.plugin.poiStats.window?
