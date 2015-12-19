@@ -1,19 +1,14 @@
 {React, ReactBootstrap, FontAwesome} = window
-{remote} = require 'electron'
 windowManager = remote.require './lib/window'
-
-i18n = remote.require 'i18n'
 path = remote.require 'path-extra'
-{__} = i18n
 
-i18n.configure({
+i18n = new (require 'i18n-2')
   locales:['en-US', 'ja-JP', 'zh-CN'],
   defaultLocale: 'zh-CN',
   directory: path.join(__dirname, "i18n"),
   updateFiles: false,
   indent: "\t",
   extension: '.json'
-})
 i18n.setLocale(window.language)
 
 
@@ -55,11 +50,11 @@ initialPoiStatsWindow = ->
 module.exports =
   name: 'PoiStatistics'
   priority: 110
-  displayName: <span><FontAwesome name='bar-chart' key={0} /> {__ 'Poi Statistics'}</span>
+  displayName: <span><FontAwesome name='bar-chart' key={0} /> {i18n.__ 'Poi Statistics'}</span>
   author: 'Alvin Yu'
   link: 'https://github.com/alvin-777/poi-plugin-poi-stats'
   version: '1.2.0'
-  description: __ 'PluginDesc'
+  description: i18n.__ 'PluginDesc'
   handleClick: ->
     if window.plugin.poiStats.window?
       window.plugin.poiStats.window.show()
