@@ -40,3 +40,6 @@ button .fa {
   cursor: pointer !important;
   width: 12px;
 }
+button[disabled] .fa {
+  cursor: not-allowed !important;
+}
