@@ -101,8 +101,6 @@ NavigationBar = React.createClass
             <Button bsSize='small' bsStyle='primary' onClick={@maximiseWindow} onContextMenu={@resetWindow} title='Zoom/Reset Window'><FontAwesome name='arrows' /></Button>
             <Button bsSize='small' bsStyle='primary' onClick={@toggleFullscreen} title='Toggle Fullscreen'><FontAwesome name='arrows-alt' /></Button>
           </ButtonGroup>
-          <span>　</span>
-          <Button bsSize='small' onClick={@copyToClipboard} title='Copy To Clipboard'><FontAwesome name='clipboard' /></Button>
         </Col>
         <Col lg={1} md={1} xs={1}>
           <Button bsSize='small' onClick={@hideWindow} title='Hide Window'><FontAwesome name='times' /></Button>
