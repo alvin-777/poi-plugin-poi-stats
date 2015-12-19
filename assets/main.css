@@ -8,18 +8,6 @@ body {
 .form-group {
   margin-bottom: 0px;
 }
-.vertical-center {
-  display: flex;
-  align-items: center;
-}
-.divider {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.divider hr {
-  margin-bottom: 15.5px;
-}
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -30,16 +18,10 @@ body {
   -webkit-border-radius: 1px;
   background-color: #3d3d3d;
 }
-.item-table-name {
-  padding-left: 10px;
-}
-.center {
-  text-align: center;
-}
-button .fa {
+#navigation-bar button .fa {
   cursor: pointer !important;
   width: 12px;
 }
-button[disabled] .fa {
+#navigation-bar button[disabled] .fa {
   cursor: not-allowed !important;
 }
