@@ -17,17 +17,14 @@ i18n.configure({
 i18n.setLocale(window.language)
 
 
-window.poiStatsWindow = null
+window.plugin ?= {}
+window.plugin.poiStats =
+  window: null
+  bounds: null
 
 handleWindowMoveResize = ->
-  b1 = window.poiStatsWindow.getBounds()
-  # console.log "Moved to: #{JSON.stringify(b1)}"
-  setTimeout(( ->
-    b2 = window.poiStatsWindow.getBounds()
-    if JSON.stringify(b2) == JSON.stringify(b1)
-      config.set 'plugin.PoiStatistics.bounds', b2
-      # console.log "   Saved:  #{JSON.stringify(b2)}"
-  ), 5000)
+  plugin.poiStats.bounds = plugin.poiStats.window.getBounds()
+  # console.log "Poi Stats Bounds: #{JSON.stringify(plugin.poiStats.bounds)}"
 
 initialPoiStatsWindow = ->
   defaultBounds = {x: 0, y: 0, width: 800, height: 750}
@@ -38,11 +35,16 @@ initialPoiStatsWindow = ->
     width: b.width
     height: b.height
     realClose: true
-  window.poiStatsWindow = newWindow
+  ps = window.plugin.poiStats
+  ps.window = newWindow
   newWindow.setMinimumSize 600, 425
   newWindow.on 'move', handleWindowMoveResize
   newWindow.on 'resize', handleWindowMoveResize
-  newWindow.on 'closed', -> window.poiStatsWindow = null
+  newWindow.on 'close', ->
+    if ps.bounds?
+      config.set 'plugin.PoiStatistics.bounds', ps.bounds
+  newWindow.on 'closed', ->
+    ps.window = ps.bounds = null
   if process.env.DEBUG?
     window.log 'Poi Stats started.'
     newWindow.openDevTools
@@ -59,7 +61,7 @@ module.exports =
   version: '1.2.0'
   description: __ 'PluginDesc'
   handleClick: ->
-    if window.poiStatsWindow != null
-      window.poiStatsWindow.show()
+    if window.plugin.poiStats.window?
+      window.plugin.poiStats.window.show()
     else
       initialPoiStatsWindow()
