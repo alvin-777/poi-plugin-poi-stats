@@ -1,6 +1,9 @@
 # poi-stats
 A plugin for the scalable KanColle browser [Poi](https://github.com/poooi/poi).
 Shows drop statistics gathered by Poi in a new window.
+Screenshot 1
+Screenshot 2
+Screenshot 3
 
 ### Usage
 Use plugin config in Poi to install this.
