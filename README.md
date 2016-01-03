@@ -6,7 +6,8 @@ Shows drop statistics gathered by Poi in a new window.
 ![image](https://cloud.githubusercontent.com/assets/13615512/12034523/afd65732-ae7d-11e5-9230-f120bb7c541a.png)
 
 ### Usage
-Use plugin config in Poi to install this.
+Use plugin config in Poi to install this plugin.
+[image here]
 
 ### Change Log
 
