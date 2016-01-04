@@ -7,7 +7,10 @@ Shows drop statistics gathered by Poi in a new window.
 
 ### Usage
 Use plugin config in Poi to install this plugin.
-[image here]
+![image](https://cloud.githubusercontent.com/assets/13615512/12079140/f67bf264-b279-11e5-927f-58e63b075e1c.png)
+- In Poi Settings => Plugin Config => Advanced
+- Enter `poi-plugin-poi-stats`, then click `INSTALL`
+- (You may need to select a reachable npm server)
 
 ### Change Log
 
