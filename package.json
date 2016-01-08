@@ -1,6 +1,6 @@
 {
   "name": "poi-plugin-poi-stats",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Show drop statistics gathered by Poi in a new window.",
   "main": "index.cjsx",
   "scripts": {

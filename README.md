@@ -14,6 +14,9 @@ Use plugin config in Poi to install this plugin.
 
 ### Change Log
 
+#### v2.0.1
+* Added instructions to install the plugin through poi plugin config
+
 #### v2.0.0
 * Compatible with Poi v5.0.0 or newer
 * Electron v0.36.1
